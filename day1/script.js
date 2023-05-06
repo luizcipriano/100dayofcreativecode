@@ -7,7 +7,7 @@ const lenis = new Lenis({
   wheelMultiplier : 1,
   smoothTouch: false,
   touchMultiplier: 2,
-  infinite: true,
+  infinite: false,
 })
 
 
@@ -21,17 +21,17 @@ requestAnimationFrame(raf)
 
 gsap.registerPlugin(ScrollTrigger);
 
-let sections = gsap.utils.toArray(".section");
+gsap.to(".panel:not(:last-child)", {
+  yPercent: -105, 
+  ease: "none",
+  stagger: 0.5,
+  scrollTrigger: {
+    trigger: "#container",
+    start: "top top",
+    end: "+=300%",
+    scrub: true,
+    pin: true
+  }
+});
 
-sections.forEach(section =>{
-  gsap.to(section, {
-    yPercent: -100,
-    ease:'none',
-    scrollTrigger: {
-      trigger: section,
-      start: "bottom bottom",
-      end: "bottom top",
-      scrub: true,
-    }
-  })
-})
+gsap.set(".panel", {zIndex: (i, target, targets) => targets.length - i});
