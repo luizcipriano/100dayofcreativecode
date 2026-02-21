@@ -13,7 +13,7 @@
   --border-h:     rgba(255, 255, 255, 0.18);
   --text-hi:      rgba(255, 255, 255, 0.88);
   --text-mid:     rgba(255, 255, 255, 0.44);
-  --text-lo:      rgba(255, 255, 255, 0.2);
+  --text-lo:      rgb(255, 255, 255);
   --accent:       210;          /* base hue — JS shifts per card */
   --radius:       12px;
   --font:         'Courier New', 'Courier', monospace;
