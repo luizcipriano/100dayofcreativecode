@@ -8,7 +8,7 @@ Desafio pessoal de criar **um experimento criativo por dia** na web — animaç�
 
 ## Ideia do projeto
 
-O **100 Days of Creative Code** é um desafio de prática constante: um experimento por dia, durante 100 dias. O foco é explorar *creative coding* no browser: partículas, flow fields, SVG, GSAP, WebGL/3D, efeitos de scroll e outras técnicas visuais e interativas.
+O **100 Days of Creative Code** é um desafio de prática constante: um experimento por dia, durante 100 dias. O foco é explorar _creative coding_ no browser: partículas, flow fields, SVG, GSAP, WebGL/3D, efeitos de scroll e outras técnicas visuais e interativas.
 
 Cada dia é um pequeno projeto em HTML/CSS/JS que fica registrado na página inicial. O **Day 1** é um [Flow Field](day1/) — simulação de partículas guiadas por um campo de vetores com ruído Perlin.
 
@@ -18,9 +18,9 @@ Cada dia é um pequeno projeto em HTML/CSS/JS que fica registrado na página ini
 
 Se o projeto estiver publicado (por exemplo no Netlify), coloque aqui o link:
 
-> **🔗 [Ver site ao vivo](https://seu-site.netlify.app)**
+> **🔗 [Ver site ao vivo](https://codetddia.netlify.app/)**
 
-*(Remova ou edite esta seção se ainda não tiver o link.)*
+_(Remova ou edite esta seção se ainda não tiver o link.)_
 
 ---
 
