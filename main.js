@@ -25,14 +25,15 @@ const DAYS = [
     path:  "./day1/"
   },
 
+  {
+    n:     2,
+    title: "Harmonograph",
+    desc:  "Pendulum drawing machine tracing Lissajous figures with natural damping.",
+    tags:  ["canvas", "math", "lissajous"],
+    path:  "./day2/"
+  },
+
   // ── Add new days here ── //
-  // {
-  //   n:     2,
-  //   title: "My Animation",
-  //   desc:  "Short description of what this day explores.",
-  //   tags:  ["svg", "gsap"],
-  //   path:  "./day2/"
-  // },
 ];
 
 
