@@ -10,7 +10,7 @@ Desafio pessoal de criar **um experimento criativo por dia** na web — animaç�
 
 O **100 Days of Creative Code** é um desafio de prática constante: um experimento por dia, durante 100 dias. O foco é explorar _creative coding_ no browser: partículas, flow fields, SVG, GSAP, WebGL/3D, efeitos de scroll e outras técnicas visuais e interativas.
 
-Cada dia é um pequeno projeto em HTML/CSS/JS que fica registrado na página inicial. O **Day 1** é um [Flow Field](day1/) — simulação de partículas guiadas por um campo de vetores com ruído Perlin.
+Cada dia é um pequeno projeto em HTML/CSS/JS que fica registrado na página inicial. O **Day 1** é um [Flow Field](day1/) — simulação de partículas guiadas por um campo de vetores com ruído Perlin. O **Day 2** é um [Harmonograph](day2/) — máquina de desenho pendular que traça figuras de Lissajous com amortecimento natural.
 
 ---
 
@@ -86,15 +86,15 @@ Depois acesse no navegador o endereço indicado (por exemplo `http://localhost:3
    - `tags` — array de tags (ex.: `["canvas", "particles"]`)
    - `path` — caminho da pasta (ex.: `"./day2/"`)
 
-Exemplo para o Day 2:
+Exemplo para o Day 3:
 
 ```js
 {
-  n:     2,
+  n:     3,
   title: "My Animation",
   desc:  "Short description of what this day explores.",
   tags:  ["svg", "gsap"],
-  path:  "./day2/"
+  path:  "./day3/"
 }
 ```
 
