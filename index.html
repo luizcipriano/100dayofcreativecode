@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="100 days of creative code — web animations, generative art and interactive experiments." />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="100 Days of Creative Code" />
+  <meta property="og:description" content="A personal challenge to build one creative web experiment per day." />
+  <meta property="og:type"        content="website" />
+
+  <title>100 Days of Creative Code</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Background grid ──────────────────────────────────────────────────── -->
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <!-- ── Header ───────────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-meta">
+        <span class="site-label">100 Days of Creative Code</span>
+        <span class="site-count" id="js-count">— / 100</span>
+      </div>
+
+      <h1 class="site-title">Creative<br>Code.</h1>
+
+      <p class="site-desc">
+        A personal challenge to build one creative web experiment every day —
+        generative art, 3D, SVG, canvas, scroll&nbsp;&amp;&nbsp;interaction.
+      </p>
+
+      <!-- Progress bar -->
+      <div class="progress-wrap" title="Progress">
+        <div class="progress-bar" id="js-progress"></div>
+      </div>
+      <span class="progress-label" id="js-progress-label">0 of 100 complete</span>
+    </div>
+  </header>
+
+  <!-- ── Grid ─────────────────────────────────────────────────────────────── -->
+  <main class="grid-section">
+    <ul class="days-grid" id="js-grid" role="list"></ul>
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <span>Luiz Cipriano · 2024</span>
+    <a href="https://github.com/luizcipriano/100dayofcreativecode" target="_blank" rel="noopener">
+      GitHub ↗
+    </a>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

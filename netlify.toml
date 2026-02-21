@@ -1,0 +1,52 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# Netlify configuration — 100 Days of Creative Code
+# Static site, no build step required.
+#
+# Deploy steps (first time):
+#   1. Push this repo to GitHub (or any Git provider)
+#   2. Go to https://app.netlify.com  →  "Add new site" → "Import an existing project"
+#   3. Connect your GitHub account and select this repository
+#   4. Build settings are detected automatically from this file — just click Deploy
+#   5. (Optional) Add a custom domain in Site settings → Domain management
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  # No build command — pure static HTML/CSS/JS
+  command = ""
+  # Serve from the repo root
+  publish = "."
+
+# ── Security & performance headers ───────────────────────────────────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+# Long-lived cache for JS/CSS assets
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML is never cached so new days appear immediately
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# ── Redirects ─────────────────────────────────────────────────────────────────
+# Ensure trailing-slash-less URLs resolve correctly
+# e.g. /day1  →  /day1/index.html (Netlify handles this natively, but explicit is safer)
+
+[[redirects]]
+  from   = "/day:n"
+  to     = "/day:n/"
+  status = 301
+  force  = false

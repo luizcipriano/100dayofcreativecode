@@ -1,0 +1,348 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   100 Days of Creative Code — Main index styles
+───────────────────────────────────────────────────────────────────────────── */
+
+/* ── Reset & tokens ─────────────────────────────────────────────────────── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg:           #060608;
+  --surface:      rgba(255, 255, 255, 0.034);
+  --surface-h:    rgba(255, 255, 255, 0.06);
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-h:     rgba(255, 255, 255, 0.18);
+  --text-hi:      rgba(255, 255, 255, 0.88);
+  --text-mid:     rgba(255, 255, 255, 0.44);
+  --text-lo:      rgba(255, 255, 255, 0.2);
+  --accent:       210;          /* base hue — JS shifts per card */
+  --radius:       12px;
+  --font:         'Courier New', 'Courier', monospace;
+  --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text-hi);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Background dot grid ────────────────────────────────────────────────── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 20%, transparent 100%);
+}
+
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+.header,
+.grid-section,
+.footer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 64px);
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.header {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(40px, 6vh, 72px);
+}
+
+.header-inner { max-width: 600px; }
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.site-label {
+  font-size: 10px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+.site-count {
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--text-lo);
+  text-align: right;
+}
+
+.site-title {
+  font-size: clamp(52px, 9vw, 96px);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -4px;
+  color: var(--text-hi);
+  margin-bottom: 28px;
+}
+
+.site-desc {
+  font-size: 13px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  color: var(--text-mid);
+  max-width: 440px;
+  margin-bottom: 32px;
+}
+
+/* Progress bar */
+.progress-wrap {
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: linear-gradient(90deg,
+    hsl(200, 90%, 60%),
+    hsl(260, 80%, 65%)
+  );
+  transition: width 1.2s var(--ease-out);
+}
+
+.progress-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+/* ── Grid ───────────────────────────────────────────────────────────────── */
+.grid-section { padding-bottom: 96px; }
+
+.days-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+.day-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 260px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  padding: 22px 22px 20px;
+  overflow: hidden;
+  cursor: default;
+  /* Stagger entrance via inline style */
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    border-color  0.3s ease,
+    background    0.3s ease,
+    box-shadow    0.3s ease,
+    transform     0.3s var(--ease-out),
+    opacity       0.5s var(--ease-out);
+}
+
+.day-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Accent top bar */
+.day-card::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    hsl(var(--card-hue), 80%, 58%),
+    hsl(calc(var(--card-hue) + 40), 80%, 65%)
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* ── Card — active (has content) ────────────────────────────────────────── */
+.day-card.is-active { cursor: pointer; }
+
+.day-card.is-active:hover {
+  border-color: var(--border-h);
+  background: var(--surface-h);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+              0 0 0 1px rgba(255,255,255,0.06);
+  transform: translateY(-3px);
+}
+
+.day-card.is-active:hover::before { opacity: 1; }
+
+/* ── Card — locked ──────────────────────────────────────────────────────── */
+.day-card.is-locked {
+  opacity: 0;   /* will be revealed by IntersectionObserver as 0.25 */
+}
+.day-card.is-locked.visible { opacity: 0.28; }
+.day-card.is-locked:hover   { transform: none; }
+
+/* ── Card internals ─────────────────────────────────────────────────────── */
+.card-day {
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--text-lo);
+  margin-bottom: 12px;
+}
+
+.card-num {
+  font-size: clamp(36px, 4vw, 48px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--text-hi);
+  margin-bottom: 10px;
+}
+
+.is-locked .card-num { color: var(--text-lo); }
+
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--text-hi);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.card-desc {
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Card footer ────────────────────────────────────────────────────────── */
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag {
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 7px;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  color: var(--text-lo);
+  background: rgba(255,255,255,0.02);
+  white-space: nowrap;
+}
+
+.card-link {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: hsl(var(--card-hue), 80%, 68%);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition:
+    opacity   0.25s ease,
+    transform 0.25s ease,
+    color     0.2s  ease;
+  pointer-events: none;
+}
+
+.day-card.is-active:hover .card-link {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.card-link:hover { color: hsl(var(--card-hue), 90%, 80%); }
+
+/* Locked placeholder lines */
+.card-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.card-placeholder span {
+  display: block;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+}
+.card-placeholder span:nth-child(1) { width: 60%; }
+.card-placeholder span:nth-child(2) { width: 40%; }
+
+/* ── Footer ─────────────────────────────────────────────────────────────── */
+.footer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 24px;
+  padding-bottom: 40px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-lo);
+  text-transform: uppercase;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 64px);
+}
+
+.footer a {
+  color: var(--text-lo);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer a:hover { color: var(--text-mid); }
+
+/* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .days-grid { grid-template-columns: repeat(2, 1fr); }
+  .day-card  { height: 220px; }
+}
+
+@media (max-width: 380px) {
+  .days-grid { grid-template-columns: 1fr; }
+}
